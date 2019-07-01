@@ -1,0 +1,122 @@
+/*
+ * Edit this file and copy it as userChrome.css into your
+ * profile-directory/chrome/
+ */
+
+/*
+ * This file can be used to customize the look of Mozilla's user interface
+ * You should consider using !important on rules which you want to
+ * override default settings.
+ */
+
+/*
+ * Do not remove the @namespace line -- it's required for correct functioning
+ */
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"); /* set default namespace to XUL */
+@namespace html "http://www.w3.org/1999/xhtml"; /* also needed since Mozilla gave up on XUL*/
+
+/*
+ * Some possible accessibility enhancements:
+ */
+/*
+ * Make all the default font sizes 20 pt:
+ *
+ * * {
+ *   font-size: 20pt !important
+ * }
+ */
+/*
+ * Make menu items in particular 15 pt instead of the default size:
+ *
+ * menupopup > * {
+ *   font-size: 15pt !important
+ * }
+ */
+/*
+ * Give the Location (URL) Bar a fixed-width font
+ *
+ * #urlbar {
+ *    font-family: monospace !important;
+ * }
+ */
+
+/*
+ * Eliminate the throbber and its annoying movement:
+ *
+ * #throbber-box {
+ *   display: none !important;
+ * }
+ */
+
+/*
+ * For more examples see http://www.mozilla.org/unix/customizing.html
+ */
+
+
+/************** MY COLOR ***************/
+:root{
+    /*--lux-accent-color: #91EBDC;*/
+    --lux-accent-color: #FFBF00;
+}
+ 
+ /* Get rid of the shitty white lines in sidebar */
+treechildren::-moz-tree-cell(hover),
+treechildren::-moz-tree-cell-text(hover),
+treechildren::-moz-tree-row(hover){
+-moz-appearance: none !important;
+outline: none !important;}
+
+
+/*
+ * Change the color of the active tab highlight line
+ */
+.tab-line[selected="true"] {
+    background-color : var(--lux-accent-color) !important; /* this sets the color of the line above the active tab */
+}
+
+/*
+ * Help with those nasty dark favicons
+ */
+.tab-icon-image {
+    background-color: hsla(0,0%,100%,0.3) !important;
+    border-radius: 25%;
+    padding: 1px;
+    transform: scale(1.3);
+}
+
+/*
+ * Changes the selection highlight color in the urlbar
+ */
+html|*.urlbar-input::-moz-selection {
+    background-color: var(--lux-accent-color) !important;
+    color: black !important;
+}
+
+/*
+ * highlight border when focused
+ */
+#urlbar:-moz-lwtheme[focused="true"],
+#urlbar:-moz-lwtheme:hover,
+#navigator-toolbox .searchbar-textbox:-moz-lwtheme[focused="true"],
+#navigator-toolbox .searchbar-textbox:-moz-lwtheme:hover {
+    /*border-color: hsla(170, 69%, 75%, 0.8) !important;*/
+    border-color: var(--lux-accent-color) !important;
+}
+
+.autocomplete-richlistitem[selected] {
+  background-color: var(--lux-accent-color) !important;
+  color: black !important;
+}
+
+/*
+ * bookmark star color when starred
+ */
+#star-button[starred] {
+    fill: var(--lux-accent-color) !important;
+}
+
+/* This enables the use of JS external files */
+/* so we can style the scrollbar */
+toolbarbutton#alltabs-button {
+    -moz-binding: url("userChrome.xml#js")
+}
